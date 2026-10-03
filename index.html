@@ -1,132 +1,572 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Just For You 🎂</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:#fff;min-height:100vh;overflow-x:hidden;
-  background:radial-gradient(circle at 50% -10%,#6b347f 0,#241437 40%,#090814 100%);
-}
-#stars{position:fixed;inset:0;pointer-events:none;z-index:0}
-.star{position:absolute;width:3px;height:3px;border-radius:50%;background:white;opacity:.65;animation:twinkle 2.5s infinite alternate}
-@keyframes twinkle{to{opacity:.12;transform:scale(.4)}}
-.screen{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px}
-.card{
-  width:min(900px,100%);padding:42px 28px;text-align:center;border-radius:30px;
-  background:rgba(255,255,255,.085);border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 25px 90px rgba(0,0,0,.38);backdrop-filter:blur(15px)
-}
-.kicker{text-transform:uppercase;letter-spacing:4px;font-size:13px;opacity:.72;margin-bottom:16px}
-h1{font-size:clamp(44px,9vw,88px);line-height:1.02;margin-bottom:18px}
-.lead{font-size:clamp(18px,3vw,24px);line-height:1.55;opacity:.9}
-.btn{
-  border:0;margin-top:32px;padding:17px 30px;border-radius:999px;
-  font-weight:800;font-size:17px;cursor:pointer;color:#281338;
-  background:linear-gradient(135deg,#ffe27a,#ff9ebd);
-  box-shadow:0 12px 35px rgba(255,170,150,.28);transition:.25s
-}
-.btn:hover{transform:translateY(-3px) scale(1.02)}
-.hidden{display:none}
-.reveal{animation:reveal .9s ease both}
-@keyframes reveal{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
-.message{max-width:720px;margin:0 auto 30px;font-size:20px;line-height:1.8}
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:35px auto;max-width:760px}
-.memory{overflow:hidden;border-radius:24px;background:rgba(255,255,255,.08);box-shadow:0 14px 40px rgba(0,0,0,.3)}
-.memory img{display:block;width:100%;height:430px;object-fit:cover}
-.caption{padding:15px 12px 18px;font-size:15px;opacity:.82}
-.note{
-  max-width:720px;margin:35px auto 0;padding:28px;border-radius:24px;
-  background:rgba(255,255,255,.07);font-size:18px;line-height:1.85
-}
-.signature{font-size:22px;font-weight:800;margin-top:18px}
-.footer{margin-top:35px;opacity:.55;font-size:13px}
-.heart{position:fixed;z-index:3;bottom:-30px;pointer-events:none;font-size:25px;animation:float 4.5s linear forwards}
-@keyframes float{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
-@media(max-width:700px){
- .card{padding:34px 17px}.gallery{grid-template-columns:1fr}
- .memory img{height:auto;max-height:520px;object-fit:cover}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🎂 A Special Birthday Surprise ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe0ec, #fff5f8, #ffe8d6);
+            color: #4a2634;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 22px;
+            animation: floatUp 7s linear infinite;
+            opacity: 0.7;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Welcome section */
+        .welcome {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cake {
+            font-size: 80px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        h1 {
+            font-size: clamp(38px, 7vw, 70px);
+            color: #d6336c;
+            margin: 20px 0 10px;
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 3vw, 25px);
+            margin-bottom: 35px;
+        }
+
+        .intro {
+            max-width: 700px;
+            line-height: 1.8;
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+
+        /* Button */
+        .surprise-btn {
+            border: none;
+            background: linear-gradient(135deg, #ff4f81, #d6336c);
+            color: white;
+            padding: 17px 35px;
+            border-radius: 50px;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(214, 51, 108, 0.3);
+            transition: 0.3s;
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 35px rgba(214, 51, 108, 0.4);
+        }
+
+        /* Surprise content */
+        #surprise {
+            display: none;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 38px;
+            color: #d6336c;
+            margin: 50px 0 15px;
+        }
+
+        .section-text {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        /* Photo gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: 0.35s;
+            overflow: hidden;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .memory-number {
+            padding: 10px 5px 5px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #d6336c;
+        }
+
+        /* Final message */
+        .final-message {
+            background: rgba(255, 255, 255, 0.75);
+            padding: 35px 25px;
+            border-radius: 25px;
+            margin: 60px auto 30px;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .final-message h2 {
+            color: #d6336c;
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .final-message p {
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        .signature {
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #d6336c;
+        }
+
+        /* Photo popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal img {
+            max-width: 95%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 25px 15px;
+            }
+
+            .cake {
+                font-size: 60px;
+            }
+
+            .intro {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .photo-card {
+                padding: 6px;
+                border-radius: 12px;
+            }
+
+            .photo-card img {
+                height: 190px;
+                border-radius: 8px;
+            }
+
+            .memory-number {
+                font-size: 12px;
+            }
+
+            .final-message {
+                padding: 25px 18px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div id="stars"></div>
 
-<section class="screen" id="opening">
-  <div class="card reveal">
-    <div class="kicker">A little surprise awaits ✨</div>
-    <h1>Hey Birthday Boy! 🎂</h1>
-    <p class="lead">I didn't want to send you just another<br>“Happy Birthday Bava” message.</p>
-    <button class="btn" onclick="openSurprise()">🎁 Open Your Surprise</button>
-  </div>
-</section>
+    <!-- Floating hearts -->
+    <div class="heart" style="left: 5%; animation-delay: 0s;">❤️</div>
+    <div class="heart" style="left: 15%; animation-delay: 2s;">💕</div>
+    <div class="heart" style="left: 30%; animation-delay: 4s;">💖</div>
+    <div class="heart" style="left: 50%; animation-delay: 1s;">❤️</div>
+    <div class="heart" style="left: 70%; animation-delay: 3s;">💕</div>
+    <div class="heart" style="left: 85%; animation-delay: 5s;">💗</div>
 
-<section class="screen hidden" id="surprise">
-  <div class="card reveal">
-    <div class="kicker">Today is all about you</div>
-    <h1>Happy Birthday Ra Bava🥳</h1>
+    <div class="container">
 
-    <p class="message">
-      Some memories are too good to simply stay in our gallery.<br>
-      So I made them part of your birthday surprise. ❤️
-    </p>
+        <!-- Welcome -->
+        <section class="welcome">
 
-    <div class="gallery">
-      <div class="memory">
-        <img src="photos/memory1.jpg" alt="A special memory">
-        <div class="caption">One of those memories worth keeping forever 📸</div>
-      </div>
-      <div class="memory">
-        <img src="photos/memory2.jpg" alt="A special memory">
-        <div class="caption">And here's to many more memories ahead ✨</div>
-      </div>
+            <div class="cake">🎂</div>
+
+            <h1>Happy Birthday! ❤️</h1>
+
+            <div class="subtitle">
+                A little surprise made just for you...
+            </div>
+
+            <p class="intro">
+                Some moments are too special to be forgotten.
+                So I collected a few beautiful memories and put them
+                together in one little surprise. 💕
+            </p>
+
+            <button class="surprise-btn" onclick="openSurprise()">
+                🎁 Open Your Surprise
+            </button>
+
+        </section>
+
+
+        <!-- Surprise -->
+        <section id="surprise">
+
+            <h2 class="section-title">
+                ✨ 26 Beautiful Memories ✨
+            </h2>
+
+            <p class="section-text">
+                Every picture has a memory.
+                Every memory has a story.
+                And every story is a little more special because of you. ❤️
+            </p>
+
+
+            <!-- Photo Gallery -->
+            <div class="gallery">
+
+                <div class="photo-card">
+                    <img src="photos/memory1.jpg" alt="Memory 1" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 1 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory2.jpg" alt="Memory 2" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 2 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory3.jpg" alt="Memory 3" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 3 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory4.jpg" alt="Memory 4" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 4 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory5.jpg" alt="Memory 5" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 5 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory6.jpg" alt="Memory 6" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 6 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory7.jpg" alt="Memory 7" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 7 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory8.jpg" alt="Memory 8" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 8 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory9.jpg" alt="Memory 9" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 9 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory10.jpg" alt="Memory 10" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 10 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory11.jpg" alt="Memory 11" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 11 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory12.jpg" alt="Memory 12" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 12 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory13.jpg" alt="Memory 13" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 13 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory14.jpg" alt="Memory 14" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 14 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory15.jpg" alt="Memory 15" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 15 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory16.jpg" alt="Memory 16" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 16 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory17.jpg" alt="Memory 17" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 17 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory18.jpg" alt="Memory 18" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 18 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory19.jpg" alt="Memory 19" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 19 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory20.jpg" alt="Memory 20" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 20 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory21.jpg" alt="Memory 21" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 21 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory22.jpg" alt="Memory 22" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 22 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory23.jpg" alt="Memory 23" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 23 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory24.jpg" alt="Memory 24" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 24 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory25.jpg" alt="Memory 25" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 25 ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="photos/memory26.jpg" alt="Memory 26" onclick="showPhoto(this.src)">
+                    <div class="memory-number">Memory 26 ❤️</div>
+                </div>
+
+            </div>
+
+
+            <!-- Final message -->
+            <div class="final-message">
+
+                <h2>❤️ One More Thing...</h2>
+
+                <p>
+                    I hope these memories make you smile,
+                    just like they made me smile while putting
+                    this little surprise together.
+                    <br><br>
+
+                    May your birthday be filled with happiness,
+                    laughter, beautiful moments and everything
+                    you wish for. 🎂✨
+                    <br><br>
+
+                    Here's to many more memories,
+                    more smiles and more beautiful moments ahead. ❤️
+                </p>
+
+                <div class="signature">
+                    Happy Birthday! 🎉❤️
+                </div>
+
+            </div>
+
+        </section>
+
     </div>
 
-    <div class="note">
-      <strong>One more thing...</strong><br><br>
-      Birthdays come every year, but the memories we make along the way
-      are what make those years special.
-      <br><br>
-      I hope this year brings you plenty of happiness, success,
-      crazy adventures and reasons to smile.
-      <div class="signature">Happy Birthday, Sunny! ❤️🎉</div>
+
+    <!-- Full-screen photo viewer -->
+    <div class="modal" id="photoModal" onclick="closePhoto()">
+
+        <span class="close">&times;</span>
+
+        <img id="modalImage" src="" alt="Full size memory">
+
     </div>
 
-    <div class="footer">Made specially for your birthday • with memories & a little magic ✨</div>
-  </div>
-</section>
 
-<script>
-const stars=document.getElementById("stars");
-for(let i=0;i<95;i++){
-  const s=document.createElement("div");
-  s.className="star";
-  s.style.left=Math.random()*100+"%";
-  s.style.top=Math.random()*100+"%";
-  s.style.animationDelay=(Math.random()*2.5)+"s";
-  stars.appendChild(s);
-}
-function openSurprise(){
-  document.getElementById("opening").classList.add("hidden");
-  document.getElementById("surprise").classList.remove("hidden");
-  window.scrollTo(0,0);
-  const emojis=["❤️","💖","✨","🎉","🥳","🎂"];
-  for(let i=0;i<42;i++){
-    setTimeout(()=>{
-      const h=document.createElement("div");
-      h.className="heart";
-      h.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-      h.style.left=Math.random()*100+"vw";
-      h.style.animationDuration=(3.2+Math.random()*3)+"s";
-      document.body.appendChild(h);
-      setTimeout(()=>h.remove(),7000);
-    },i*70);
-  }
-}
-</script>
+    <script>
+
+        function openSurprise() {
+
+            const surprise = document.getElementById("surprise");
+
+            surprise.style.display = "block";
+
+            surprise.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function showPhoto(src) {
+
+            const modal = document.getElementById("photoModal");
+
+            const modalImage = document.getElementById("modalImage");
+
+            modalImage.src = src;
+
+            modal.style.display = "flex";
+
+        }
+
+
+        function closePhoto() {
+
+            document.getElementById("photoModal").style.display = "none";
+
+        }
+
+
+        // Close photo viewer using Escape key
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+
+                closePhoto();
+
+            }
+
+        });
+
+    </script>
+
 </body>
 </html>
+```
